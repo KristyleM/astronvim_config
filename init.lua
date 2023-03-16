@@ -196,6 +196,7 @@ local config = {
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+      ["<leader>w"] = { "<c-w>", desc = "window"},
       ["<C-j>"] = { "5j", desc = "5j" },
       ["<C-k>"] = { "5k", desc = "5k" },
       ["<C-h>"] = { "5h", desc = "5h" },
@@ -205,6 +206,7 @@ local config = {
       ["D"] = { "d", desc = "Use like d and yank data" },
       ["c"] = { '"_c', desc = "not yank when call c" },
       ["C"] = { '"_C', desc = "not yank when call C" },
+      ["U"] = { '<c-R>', desc = "redo" },
       ["gpd"] = {
         "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
         desc = "Plugin goto-review go to definition",
