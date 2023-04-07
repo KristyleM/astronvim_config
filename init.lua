@@ -379,7 +379,7 @@ local config = {
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-      ensure_installed = { "prettier", "stylua", "black", "gofmt", "yamlfmt" },
+      ensure_installed = { "prettier", "rustfmt", "stylua", "black", "gofmt", "yamlfmt" },
     },
   },
 
