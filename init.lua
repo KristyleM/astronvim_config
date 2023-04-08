@@ -137,6 +137,7 @@ local config = {
 
   -- Extend LSP configuration
   lsp = {
+    skip_setup = { "rust_analyzer" },
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
@@ -273,6 +274,15 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
+      {
+        "simrat39/rust-tools.nvim",
+        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+        config = function()
+          require("rust-tools").setup {
+            server = astronvim.lsp.server_settings "rust_analyzer", -- get the server settings and built in capabilities/on_attach
+          }
+        end,
+      },
       [ "ethanholz/nvim-lastplace" ] = {
           event = "BufRead",
           config = function ()
@@ -296,39 +306,9 @@ local config = {
           require("leap").opts.highlight_unlabeled_phase_one_targets = false
         end,
       },
-      -- ["ggandor/flit.nvim"] = {
-      --   event = "BufRead",
-      --   config = function()
-      --     require("flit").setup {
-      --       keys = { f = "f", F = "F", t = "t", T = "T" },
-      --       -- A string like "nv", "nvo", "o", etc.
-      --       labeled_modes = "v",
-      --       multiline = true,
-      --       -- Like `leap`s similar argument (call-specific overrides).
-      --       -- E.g.: opts = { equivalence_classes = {} }
-      --       opts = {},
-      --     }
-      --   end,
-      -- },
       ["rmagatti/goto-preview"] = {
         event = "BufRead",
         config = function() require("goto-preview").setup {} end,
-      },
-      ["simrat39/rust-tools.nvim"] = {
-        event = "BufRead",
-        config = function()
-          local rt = require "rust-tools"
-          rt.setup {
-            server = {
-              on_attach = function(_, bufnr)
-                -- Hover actions
-                vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-                -- Code action groups
-                vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-              end,
-            },
-          }
-        end,
       },
 
       -- We also support a key value style plugin definition similar to NvChad:
